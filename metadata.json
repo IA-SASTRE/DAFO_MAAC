@@ -1,0 +1,6 @@
+{
+  "name": "Matriz DAFO y Evaluacion de Riesgos ISO 31000",
+  "description": "Herramienta avanzada para el analisis DAFO y evaluacion de riesgos bajo la norma ISO 31000 con soporte de generacion automatica por IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
