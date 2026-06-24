@@ -165,12 +165,16 @@ export default function App() {
         const responseText = await response.text();
         try {
           data = JSON.parse(responseText);
+          // Validar que el formato contenga arreglos válidos para las cuatro categorías
+          if (!data || !Array.isArray(data.fortalezas) || !Array.isArray(data.oportunidades) || !Array.isArray(data.debilidades) || !Array.isArray(data.amenazas)) {
+            throw new Error("El JSON devuelto no contiene el formato DAFO esperado.");
+          }
         } catch (jsonErr) {
-          console.warn("La respuesta del servidor no es un JSON válido. Usando generador de respaldo local.", jsonErr);
+          console.warn("La respuesta de la API no es válida o no tiene el formato correcto. Activando motor de respaldo offline local:", jsonErr);
           data = getLocalFallbackDafo(contextoOrg, selectedNormas, misionVision);
         }
       } else {
-        console.warn(`El servidor retornó un código de error ${response.status}. Usando generador de respaldo local.`);
+        console.warn(`El servidor retornó un código de error ${response.status}. Activando motor de respaldo offline local.`);
         data = getLocalFallbackDafo(contextoOrg, selectedNormas, misionVision);
       }
 
